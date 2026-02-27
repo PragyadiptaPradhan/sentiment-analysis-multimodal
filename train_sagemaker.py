@@ -1,17 +1,18 @@
 from sagemaker.pytorch import PyTorch 
 from sagemaker.debugger import TensorBoardOutputConfig 
 
-
 def start_training():
+    print("[1/3] Building TensorBoard config...")
     tensorboard_config = TensorBoardOutputConfig(
-        s3_output_path="s3://multimodal-analysis-hrisi/tensorboard",
+        s3_output_path="s3://sentiment-analysis-multimodal-saas/tensorboard",
         container_local_output_path="/opt/ml/output/tensorboard"
     )
 
+    print("[2/3] Creating estimator...")
     estimator = PyTorch(
         entry_point="train.py",
         source_dir="training",
-        role="arn:aws:iam::490939613248:role/sentiment-analysis-execution-role",
+        role="arn:aws:iam::490939613248:role/sentiment-analysis-multimodal-execution-role",
         framework_version="2.5.1",
         py_version="py311",
         instance_count=1,
@@ -23,11 +24,12 @@ def start_training():
         tensorboard_config=tensorboard_config
     )
 
+    print("[3/3] Calling estimator.fit()...")
     # Start training
     estimator.fit({
-        "training": "s3://multimodal-analysis-hrisi/dataset/train",
-        "validation": "s3://multimodal-analysis-hrisi/dataset/dev",
-        "test": "s3://multimodal-analysis-hrisi/dataset/test"
+        "training": "s3://sentiment-analysis-multimodal-saas/dataset/train",
+        "validation": "s3://sentiment-analysis-multimodal-saas/dataset/dev",
+        "test": "s3://sentiment-analysis-multimodal-saas/dataset/test"
     })
 
 

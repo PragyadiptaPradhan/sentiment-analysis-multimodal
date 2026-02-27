@@ -1,8 +1,14 @@
+--constraint constraints.txt
+
+pip>=24.0
+setuptools>=68,<81
+wheel>=0.41
+
 torch==2.5.1
 torchaudio==2.5.1
 torchvision==0.20.1
 transformers==4.47.1
-openai-whisper==20240930
+openai-whisper
 opencv-python==4.10.0.84
 numpy==1.26.4
 nvgpu==0.10.0
