@@ -7,7 +7,7 @@ const EMOTION_EMOJI: Record<string, string> = {
   anger: "😡",
   disgust: "🤢",
   fear: "😨",
-  joy: "😄",
+   happiness: "😄",
   neutral: "😐",
   sadness: "😢",
   surprise: "😲",
@@ -89,42 +89,42 @@ export function Inference({ quota }: InferenceProps) {
 
   return (
     <div className="flex h-fit w-full flex-col gap-3 md:w-1/2">
-      <h2 className="text-ls font-medium text-slate-800">Inference</h2>
+      <h2 className="text-ls font-medium text-slate-800 dark:text-slate-200">Inference</h2>
       <UploadVideo onAnalysis={setAnalysis} apiKey={quota.secretKey} />
 
-      <h2 className="mt-2 text-sm text-slate-800">Overall analysis</h2>
+      <h2 className="mt-2 text-sm text-slate-800 dark:text-slate-200">Overall analysis</h2>
       {averages ? (
-        <div className="flex h-fit w-full flex-wrap items-center justify-center gap-4 rounded-xl border border-gray-200 p-4 sm:gap-8 sm:px-6">
+        <div className="flex h-fit w-full flex-wrap items-center justify-center gap-4 rounded-xl border border-gray-200 p-4 sm:gap-8 sm:px-6 dark:border-gray-700">
           <div className="flex flex-col items-center">
-            <span className="text-sm">Primary emotion</span>
+            <span className="text-sm dark:text-gray-200">Primary emotion</span>
             <span className="text-[40px]">
               {EMOTION_EMOJI[averages?.topEmotion?.label!]}
             </span>
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-gray-500 dark:text-gray-400">
               {averages.topEmotion?.confidence.toFixed(3)} (
               {(averages.topEmotion?.confidence! * 100).toFixed(0)}%)
             </span>
           </div>
           <div className="flex flex-col items-center">
-            <span className="text-sm">Primary Sentiment</span>
+            <span className="text-sm dark:text-gray-200">Primary Sentiment</span>
             <span className="text-[40px]">
               {SENTIMENT_EMOJI[averages?.topSentiment?.label!]}
             </span>
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-gray-500 dark:text-gray-400">
               {averages.topSentiment?.confidence.toFixed(3)} (
               {(averages.topSentiment?.confidence! * 100).toFixed(0)}%)
             </span>
           </div>
         </div>
       ) : (
-        <div className="flex h-32 w-full items-center justify-center rounded-xl border border-dashed border-gray-200 p-4">
-          <span className="text-sm text-gray-400">
+        <div className="flex h-32 w-full items-center justify-center rounded-xl border border-dashed border-gray-200 p-4 dark:border-gray-700">
+          <span className="text-sm text-gray-400 dark:text-gray-500">
             Upload a video to see overall analysis
           </span>
         </div>
       )}
 
-      <h2 className="mt-2 text-sm text-slate-800">Analysis of utterances</h2>
+      <h2 className="mt-2 text-sm text-slate-800 dark:text-slate-200">Analysis of utterances</h2>
       {analysis ? (
         <div className="flex flex-col gap-2">
           {analysis?.analysis.utterances.map((utterance, i) => {
@@ -134,33 +134,33 @@ export function Inference({ quota }: InferenceProps) {
                   utterance.start_time.toString() +
                   utterance.end_time.toString()
                 }
-                className="flex h-fit w-full flex-wrap justify-between gap-8 rounded-xl border border-gray-200 px-6 py-4 sm:gap-4"
+                className="flex h-fit w-full flex-wrap justify-between gap-8 rounded-xl border border-gray-200 px-6 py-4 sm:gap-4 dark:border-gray-700"
               >
                 {/* Time and text */}
                 <div className="flex w-full max-w-24 flex-col justify-center">
-                  <div className="text-sm font-semibold">
+                  <div className="text-sm font-semibold dark:text-gray-200">
                     {Number(utterance.start_time).toFixed(1)} -{" "}
                     {Number(utterance.end_time).toFixed(1)}
                   </div>
-                  <div className="mt-1 text-xs text-gray-500">
+                  <div className="mt-1 text-xs text-gray-500 dark:text-gray-400">
                     {utterance.text}
                   </div>
                 </div>
 
                 {/* Emotions */}
                 <div className="flex w-full max-w-48 flex-col gap-2">
-                  <span className="text-sm font-medium">Emotions</span>
+                  <span className="text-sm font-medium dark:text-gray-200">Emotions</span>
                   {utterance.emotions.map((emo, i) => {
                     return (
-                      <div key={emo.label} className="flex items-center gap-2">
-                        <span className="w-16 whitespace-nowrap text-xs text-gray-500">
+                      <div key={emo.label} className="flex items-center gap-4">
+                        <span className="w-16 whitespace-nowrap text-xs text-gray-500 dark:text-gray-400">
                           {EMOTION_EMOJI[emo.label]} {emo.label}
                         </span>
                         <div className="flex-1">
-                          <div className="h-1 w-full rounded-full bg-gray-100">
+                            <div className="h-1 w-full rounded-full bg-gray-100 dark:bg-gray-700">
                             <div
                               style={{ width: `${emo.confidence * 100}%` }}
-                              className="h-1 rounded-full bg-gray-800"
+                              className="h-1 rounded-full bg-gray-800 dark:bg-gray-300"
                             ></div>
                           </div>
                           <span className="w-8 text-right text-xs">
@@ -174,23 +174,23 @@ export function Inference({ quota }: InferenceProps) {
 
                 {/* Sentiments */}
                 <div className="flex w-full max-w-48 flex-col gap-2">
-                  <span className="text-sm font-medium">Sentiments</span>
+                  <span className="text-sm font-medium dark:text-gray-200">Sentiments</span>
                   {utterance.sentiments.map((sentiment, i) => {
                     return (
                       <div
                         key={sentiment.label}
-                        className="flex items-center gap-2"
+                        className="flex items-center gap-4"
                       >
-                        <span className="w-16 whitespace-nowrap text-xs text-gray-500">
+                        <span className="w-16 whitespace-nowrap text-xs text-gray-500 dark:text-gray-400">
                           {SENTIMENT_EMOJI[sentiment.label]} {sentiment.label}
                         </span>
                         <div className="flex-1">
-                          <div className="h-1 w-full rounded-full bg-gray-100">
+                            <div className="h-1 w-full rounded-full bg-gray-100 dark:bg-gray-700">
                             <div
                               style={{
                                 width: `${sentiment.confidence * 100}%`,
                               }}
-                              className="h-1 rounded-full bg-gray-800"
+                              className="h-1 rounded-full bg-gray-800 dark:bg-gray-300"
                             ></div>
                           </div>
                           <span className="w-8 text-right text-xs">
@@ -206,8 +206,8 @@ export function Inference({ quota }: InferenceProps) {
           })}
         </div>
       ) : (
-        <div className="flex h-32 w-full items-center justify-center rounded-xl border border-dashed border-gray-200 p-4">
-          <span className="text-sm text-gray-400">
+        <div className="flex h-32 w-full items-center justify-center rounded-xl border border-dashed border-gray-200 p-4 dark:border-gray-700">
+          <span className="text-sm text-gray-400 dark:text-gray-500">
             Upload a video to see analysis results
           </span>
         </div>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import CodeExamples from "~/components/client/code-examples";
 import CopyButton from "~/components/client/copy-button";
+import { DarkModeToggle } from "~/components/client/dark-mode-toggle";
 import { Inference } from "~/components/client/inference";
 import { SignOutButton } from "~/components/client/signout";
 import { auth } from "~/server/auth";
@@ -18,34 +19,37 @@ export default async function HomePage() {
   });
 
   return (
-    <div className="min-h-screen bg-white">
-      <nav className="flex h-16 items-center justify-between border-b border-gray-200 px-10">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <nav className="flex h-16 items-center justify-between border-b border-gray-200 px-10 dark:border-gray-700">
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gray-800 text-white">
+          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gray-800 text-white dark:bg-gray-600">
             SA
           </div>
-          <span className="text-lg font-medium">Sentiment Analysis</span>
+          <span className="text-lg font-medium dark:text-white">Sentiment Analysis</span>
         </div>
 
-        <SignOutButton />
+        <div className="flex items-center gap-3">
+          <DarkModeToggle />
+          <SignOutButton />
+        </div>
       </nav>
 
       <main className="flex min-h-screen w-full flex-col gap-6 p-4 sm:p-10 md:flex-row">
         <Inference quota={{secretKey: quota.secretKey}}/>
-        <div className="hidden border-l border-slate-200 md:block"></div>
+        <div className="hidden border-l border-slate-200 md:block dark:border-gray-700"></div>
         <div className="flex h-fit w-full flex-col gap-3 md:w-1/2">
-          <h2 className="text-lg font-medium text-slate-800">API</h2>
-          <div className="bg-opacity-70 mt-3 flex h-fit w-full flex-col rounded-xl bg-gray-100 p-4">
-            <span className="text-sm">Secret Key</span>
-            <span className="text-sm text-gray-500">
+          <h2 className="text-lg font-medium text-slate-800 dark:text-slate-200">API</h2>
+          <div className="bg-opacity-70 mt-3 flex h-fit w-full flex-col rounded-xl bg-gray-100 p-4 dark:bg-gray-800">
+            <span className="text-sm dark:text-gray-200">Secret Key</span>
+            <span className="text-sm text-gray-500 dark:text-gray-400">
               This key whould be used when calling our API, to authorize your
               request. It can not be shared publicly, and needs to kept secret.
             </span>
 
             <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <span className="text-sm">Key</span>
+              <span className="text-sm dark:text-gray-200">Key</span>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="w-full max-w-50 overflow-x-auto rounded-md border border-gray-200 px-3 py-1 text-sm text-gray-600 sm:w-auto">
+                <span className="w-full max-w-50 overflow-x-auto rounded-md border border-gray-200 px-3 py-1 text-sm text-gray-600 sm:w-auto dark:border-gray-600 dark:text-gray-300 dark:bg-gray-700">
                   {quota.secretKey}
                 </span>
 
@@ -54,18 +58,18 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="bg-opacity-70 mt-3 flex h-fit w-full flex-col rounded-xl bg-gray-100 p-4">
+          <div className="bg-opacity-70 mt-3 flex h-fit w-full flex-col rounded-xl bg-gray-100 p-4 dark:bg-gray-800">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <span className="text-sm">Monthly quota</span>
-              <span className="text-sm text-gray-500">
+              <span className="text-sm dark:text-gray-200">Monthly quota</span>
+              <span className="text-sm text-gray-500 dark:text-gray-400">
                 {quota.requestUsed} / {quota.maxRequests} requests
               </span>
             </div>
 
-            <div className="mt-1 h-1 w-full rounded-full bg-gray-200">
+            <div className="mt-1 h-1 w-full rounded-full bg-gray-200 dark:bg-gray-600">
               <div style={{
                 width: (quota.requestUsed / quota.maxRequests) * 100 + "%",
-              }} className="h-1 rounded-full bg-gray-800"></div>
+              }} className="h-1 rounded-full bg-gray-800 dark:bg-gray-300"></div>
             </div>
 
           </div>

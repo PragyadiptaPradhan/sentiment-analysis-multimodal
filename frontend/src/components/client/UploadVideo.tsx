@@ -81,7 +81,7 @@ function UploadVideo({ apiKey, onAnalysis }: UploadVideoProps) {
 
   return (
     <div className="flex w-full flex-col gap-2">
-      <div className="flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-gray-300 p-10">
+      <div className="flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-gray-300 p-10 dark:border-gray-600">
         <input
           type="file"
           accept="video/mp4,video/mov,video/avi"
@@ -96,8 +96,8 @@ function UploadVideo({ apiKey, onAnalysis }: UploadVideoProps) {
           htmlFor="video-upload"
           className="flex cursor-pointer flex-col items-center"
         >
-          <FiUpload className="min-h-8 min-w-8 text-gray-400" />
-          <h3 className="text-md mt-2 from-indigo-50 text-slate-800">
+          <FiUpload className="min-h-8 min-w-8 text-gray-400 dark:text-gray-500" />
+          <h3 className="text-md mt-2 from-indigo-50 text-slate-800 dark:text-slate-200">
             {status === "uploading"
               ? "Uploading..."
               : status === "analyzing"

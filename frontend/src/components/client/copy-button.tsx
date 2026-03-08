@@ -19,7 +19,7 @@ function CopyButton({ text }: { text: string }) {
 
     return(
         <button 
-        className="flex h-fit w-fit items-center justify-center gap-2 rounded-md border-gray-200 bg-white px-2 py-1 text-sm text-gray-600 hover:bg-gray-50 transition-colors"
+        className="flex h-fit w-fit items-center justify-center gap-2 rounded-md border-gray-200 bg-white px-2 py-1 text-sm text-gray-600 hover:bg-gray-50 transition-colors dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
         onClick={handleCopy}>
             {copied ? 
             (<FiCheck className="w-4 h-4"/>) : 

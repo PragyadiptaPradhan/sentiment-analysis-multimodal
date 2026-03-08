@@ -54,21 +54,21 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      <nav className="flex h-16 items-center justify-between border-b border-gray-200 px-10">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <nav className="flex h-16 items-center justify-between border-b border-gray-200 px-10 dark:border-gray-700">
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gray-800 text-white">
+          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gray-800 text-white dark:bg-gray-600">
             SA
           </div>
-          <span className="text-lg font-medium">Sentiment Analysis</span>
+          <span className="text-lg font-medium dark:text-white">Sentiment Analysis</span>
         </div>
       </nav>
 
       <main className="flex h-[calc(100vh-4rem)] items-center justify-center">
         <div className="w-full max-w-md space-y-8 px-4">
           <div className="text-center">
-            <h2 className="text-2xl font-bold">Welcome back</h2>
-            <p className="mt-2 text-sm text-gray-600">
+            <h2 className="text-2xl font-bold dark:text-white">Welcome back</h2>
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
               Please sign in to your account
             </p>
           </div>
@@ -76,21 +76,21 @@ export default function LoginPage() {
            className="mt-8 space-y-6"
           onSubmit={form.handleSubmit(onSubmit)}
           >
-            {error && (<div className="rounded-md bg-red-50 p-4 text-sm text-red-500">
+            {error && (<div className="rounded-md bg-red-50 p-4 text-sm text-red-500 dark:bg-red-900/30 dark:text-red-400">
                 {error}
             </div>
             )}
             <div className="space-y-4">
 
                 <div>
-                    <label className="text-sm font-medium text-gray-700">
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                         Email address
                     </label>
                     <input 
                         {...form.register("email")} 
                         type="email" 
                         placeholder="xyz@example.com"
-                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 shadow-sm focus:border-gray-500 focus:outline-none"
+                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 shadow-sm focus:border-gray-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500"
                     />
                     {
                         form.formState.errors.email && (
@@ -101,14 +101,14 @@ export default function LoginPage() {
                     }
                 </div>
                 <div>
-                    <label className="text-sm font-medium text-gray-700">
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                         Password
                     </label>
                     <input 
                         {...form.register("password")} 
                         type="password" 
                         placeholder="********"
-                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 shadow-sm focus:border-gray-500 focus:outline-none"
+                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 shadow-sm focus:border-gray-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500"
                     />
                     {
                         form.formState.errors.password && (
@@ -120,11 +120,11 @@ export default function LoginPage() {
                 </div>
 
             </div>
-            <button type="submit" disabled={loading} className="flex w-full justify-center rounded-md bg-gray-800 px-4 py-2 text-white font-medium hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:opacity-50">
+            <button type="submit" disabled={loading} className="flex w-full justify-center rounded-md bg-gray-800 px-4 py-2 text-white font-medium hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:opacity-50 dark:bg-gray-600 dark:hover:bg-gray-500">
                 {loading ? "Logging in..." : "Log in"}
             </button>
-            <p className="text-center text-sm text-gray-600">
-                Don't have an account?{" "}<Link href="/signup" className="font-medium text-gray-800 hover:text-gray-700">Sign up</Link>
+            <p className="text-center text-sm text-gray-600 dark:text-gray-400">
+                Don't have an account?{" "}<Link href="/signup" className="font-medium text-gray-800 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white">Sign up</Link>
             
             </p>
 

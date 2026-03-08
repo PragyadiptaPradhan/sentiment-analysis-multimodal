@@ -78,9 +78,9 @@ curl -X POST \\
   /api/sentiment-inference`;
 
   return (
-    <div className="mt-3 flex h-fit w-full flex-col rounded-xl bg-gray-100 bg-opacity-70 p-4">
-      <span className="text-sm">API Usage</span>
-      <span className="mb-4 text-sm text-gray-500">
+    <div className="mt-3 flex h-fit w-full flex-col rounded-xl bg-gray-100 bg-opacity-70 p-4 dark:bg-gray-800">
+      <span className="text-sm dark:text-gray-200">API Usage</span>
+      <span className="mb-4 text-sm text-gray-500 dark:text-gray-400">
         Examples of how to use the API with TypeScript and cURL.
       </span>
 
